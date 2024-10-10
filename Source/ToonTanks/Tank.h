@@ -14,11 +14,18 @@ class TOONTANKS_API ATank : public ABasePawn
 {
 	GENERATED_BODY()
 
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 public:
 	ATank();
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -35,4 +42,6 @@ private:
 
 	void Move(float Value);
 	void Turn(float Value);
+
+	APlayerController* PlayerControllerRef; // 플레이어 컨트롤러 포인터
 };
