@@ -18,7 +18,7 @@ public:
 protected:
 	// 터렛이 타겟으로 회전하는 함수
 	void RotateTurret(FVector LookAtTarget);
-
+	// 투사체 발사
 	void Fire();
 
 private:
@@ -33,4 +33,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent* ProjectileSpawnPoint;
+
+	// AProjectile 클래스만 파생되도록 제한
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectile> ProjectileClass;
 };
