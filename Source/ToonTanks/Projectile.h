@@ -23,8 +23,13 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	UStaticMeshComponent* ProjectileMesh;
 
+	// 언리얼 엔진 투사체 이동 컴포넌트
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent* ProjectileMovementComponent;
+
+	// 충돌하는 컴포넌트, 충돌 당하는 액터, 충돌 당하는 컴포넌트, 충돌 시 임펄스 방향 크기, 충돌 정보
+	UFUNCTION(BlueprintCallable)
+	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 public:	
 	// Called every frame
