@@ -22,8 +22,7 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
 	// cast : ()안의 포인터를 <>타입으로 바꿈
-	PlayerControllerRef = Cast<APlayerController>(GetController());
-
+	TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 // Called every frame
@@ -31,10 +30,10 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (PlayerControllerRef)
+	if (TankPlayerController)
 	{
 		FHitResult HitResult;
-		PlayerControllerRef->GetHitResultUnderCursor(
+		TankPlayerController->GetHitResultUnderCursor(
 			ECollisionChannel::ECC_Visibility,
 			false,
 			HitResult);
@@ -50,6 +49,13 @@ void ATank::Tick(float DeltaTime)
 
 		RotateTurret(HitResult.ImpactPoint);
 	}
+}
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true); // Destroy 대신 카메라 유지
+	SetActorTickEnabled(false); // 틱 해제
 }
 
 // Called to bind functionality to input

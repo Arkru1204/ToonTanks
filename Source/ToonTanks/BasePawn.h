@@ -15,6 +15,8 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	void HandleDestruction();
+
 protected:
 	// 터렛이 타겟으로 회전하는 함수
 	void RotateTurret(FVector LookAtTarget);
