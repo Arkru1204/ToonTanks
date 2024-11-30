@@ -56,6 +56,7 @@ void ATank::HandleDestruction()
 	Super::HandleDestruction();
 	SetActorHiddenInGame(true); // Destroy 대신 카메라 유지
 	SetActorTickEnabled(false); // 틱 해제
+	bAlive = false;
 }
 
 // Called to bind functionality to input
