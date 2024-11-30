@@ -63,6 +63,8 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation()); // 충돌 파티클 생성
 		if (HitSound)
 			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+		if (HitCameraShakeClass)
+			GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
 	}
 	Destroy();
 }
